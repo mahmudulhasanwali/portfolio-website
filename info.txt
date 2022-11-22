@@ -1,0 +1,16 @@
+        <form action="service_delete.php" method="POST">
+         <input type="hidden" name="id" value="<?= $service['id'] ?>" />
+         <td>
+                  <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+         </td>
+		 </form>
+<?php
+// print_r($_POST);
+$id = $_POST['id'];
+$db_connect = mysqli_connect('localhost', 'root', '', 'hw_7');
+
+if (isset($_POST['delete'])) {
+    $db_data_delete_query = "DELETE FROM services WHERE id = $id";
+    mysqli_query($db_connect, $db_data_delete_query);
+    header("location: service_list.php");
+}
